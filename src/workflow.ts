@@ -1,5 +1,3 @@
-// import axios, { AxiosRequestConfig } from 'axios';
-
 type WorkflowStep = {
   id: number | string;
   type: 'http' | 'condition';
