@@ -6,8 +6,8 @@ type WorkflowStep = {
   headers?: Record<string, string>;
   data?: any;
   condition?: string;
-  trueCase?: number;
-  falseCase?: number;
+  trueCase?: number | string;
+  falseCase?: number | string;
 };
 
 export type WorkflowConfig = {
