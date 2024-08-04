@@ -1,0 +1,51 @@
+curl --request POST \
+  --url http://localhost:3000/api/execute-workflow \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "steps": [
+    {
+      "id": 1,
+      "type": "http",
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/posts/1"
+    },
+    {
+      "id": 2,
+      "type": "condition",
+      "condition": "context['\''step_1'\''].userId === 1",
+      "trueCase": 4,
+      "falseCase": 3
+    },
+    {
+      "id": 3,
+      "type": "http",
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/posts/2"
+    },
+    {
+      "id": 4,
+      "type": "http",
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/posts/3"
+    },
+    {
+      "id": 5,
+      "type": "condition",
+      "condition": "context['\''step_4'\''] === undefined",
+      "trueCase": 6,
+      "falseCase": 7
+    },
+    {
+      "id": 6,
+      "type": "http",
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/posts/4"
+    },
+    {
+      "id": 7,
+      "type": "http",
+      "method": "GET",
+      "url": "https://jsonplaceholder.typicode.com/posts/5"
+    }
+  ]
+}'
